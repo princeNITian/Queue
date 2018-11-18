@@ -1,0 +1,83 @@
+#include <stdio.h>
+#include <stdlib.h>
+
+struct node {
+    int data;
+    struct node *next;
+};
+
+struct node *front = NULL;
+struct node *rear = NULL;
+struct node *temp;
+
+
+//EnQueue 
+void enQueue(int val){
+    struct node *newNode = malloc(sizeof(struct node));
+    newNode->data=val;
+    newNode->next=NULL;
+    rear=newNode;
+    if(front==NULL){
+    front=rear;
+    }
+    else{
+        temp=front;
+    
+        while(temp->next!=NULL){
+            temp=temp->next;
+        }
+        temp->next=newNode;
+    }
+
+}
+
+//display
+void Display(){
+    struct node *ptr;
+    ptr=front;
+    if(front!=NULL){
+    while(ptr!=NULL){
+        printf("%d ",ptr->data);
+        ptr=ptr->next;
+    }
+    }
+    else{
+        printf("Queue is Empty.!!\n");
+    }
+}
+
+//DeQueue operation
+void DeQueue(){
+    if(front==NULL){
+        printf("Queue is Already Empty.Further Deletion not possible.");
+
+    }else{
+        temp=front;
+        front=front->next;
+        free(temp);
+        printf("\n");
+    }
+}
+
+
+int main(){
+Display();
+enQueue(5);
+enQueue(4);
+enQueue(3);
+enQueue(2);
+enQueue(1);
+Display();
+DeQueue();
+Display();
+DeQueue();
+Display();
+DeQueue();
+Display();
+DeQueue();
+Display();
+DeQueue();
+Display();
+DeQueue();
+    return 0;
+}
